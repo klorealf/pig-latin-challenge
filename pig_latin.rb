@@ -7,5 +7,16 @@
 # ENDIF
 
 def convert_word_to_pig_latin(word)
+  if word =~ (/\A[aeiou]/i)
+    return word
+  elsif word =~ (/\A[^aeiou]/i)
+    match = /\A[^aeiou]/i+/i.match(word)
+    word = match.post_match + match.to_s + 'ay'
+  end
+  word
+end
 
-end#convert_word_to_pig_latin
+def convert_word_to_pig_latin(word)
+
+
+
