@@ -2,9 +2,13 @@ def convert_word_to_pig_latin (word)
   alphabet = ('a'..'z').to_a
   vowels = %w[a e i o u]
   consonants = alphabet - vowels
-
-   if vowels.include?(word[0])
+#Yes we know we hard coded these, but freaking sphynx :(
+  if vowels.include?(word[0])
     word
+  elsif consonants.include?(word[0]) && consonants.include?(word[1]) && consonants.include?(word[2]) && consonants.include?(word[3]) && consonants.include?(word[4]) && consonants.include?(word[5])
+    word[6..-1] + word[0..5] + 'ay'
+  elsif consonants.include?(word[0]) && consonants.include?(word[1]) && consonants.include?(word[2]) && consonants.include?(word[3]) && consonants.include?(word[4])
+    word[5..-1] + word[0..4] + 'ay'
   elsif consonants.include?(word[0]) && consonants.include?(word[1]) && consonants.include?(word[2]) && consonants.include?(word[3])
     word[4..-1] + word[0..3] + 'ay'
   elsif consonants.include?(word[0]) && consonants.include?(word[1]) && consonants.include?(word[2])
@@ -18,19 +22,17 @@ def convert_word_to_pig_latin (word)
   end
 end
 
+def convert_sentence_to_pig_latin (sentence)
+  new_array = []
+  new_array << sentence.split(" ")
+  p new_array
+  new_array.map! {|name| convert_word_to_pig_latin(name)}
 
+  # new_array.each do |word|
+  #   p new_new_array << convert_word_to_pig_latin(word)
+  # end
+  p new_array.join(" ")
+end
 
-# p convert_word_to_pig_latin("alpha")
-# p convert_word_to_pig_latin("cat")
-# p convert_word_to_pig_latin("ccat")
-# p convert_word_to_pig_latin("cccat")
-# p convert_word_to_pig_latin("ccccat")
-# p convert_word_to_pig_latin("doggy")
-
-"alpha"
-"atcay"
-"atccay"
-"atcccay"
-"atccccay"
-"oggyday"
-
+a = "The Cat Ate"
+convert_sentence_to_pig_latin(a)
